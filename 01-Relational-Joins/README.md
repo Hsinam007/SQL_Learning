@@ -48,3 +48,24 @@ This is a powerful but underrated use for Joins. Instead of just adding columns,
 > **💡 Pro-Tip:** Always strive to maintain a **"Single Source of Truth."** For example, use Joins to pull data from the Customer table (the single source of truth for user data) into the Transactional table to ensure report accuracy, rather than duplicating customer data everywhere.
 
 ---
+## 🕵️‍♂️ Advanced Joins: The Anti-Joins & Cross Joins
+While standard joins are about combining data, **Anti-Joins** are about finding what is *missing*. They use a combination of a `JOIN` and a `WHERE ... IS NULL` clause to filter out matches.
+
+### 1. LEFT ANTI JOIN (The Exclusion)
+**Logic:** Returns rows from the Left table that have **no match** in the Right table.
+* **Business Example:** Finding customers who registered but never bought anything.
+* **Impact:** This is the ultimate "Lookup Filter." It helps businesses identify inactive users, abandoned carts, or missing records.
+
+### 2. RIGHT ANTI JOIN (The Orphan Finder)
+**Logic:** Returns rows from the Right table with no match in the Left.
+* **Business Example:** Finding "orphaned" orders that are tied to a deleted or non-existent Customer ID. 
+* **Technical Note:** Just like the Right Join, you can achieve this by simply swapping the tables in a Left Anti Join.
+
+### 3. FULL ANTI JOIN (The Disconnect View)
+**Logic:** Returns *only* the rows that do not match in either table.
+* **Business Example:** Identifying systemic data entry errors where you have customers with no orders, and orders with no valid customers, all in one view.
+
+### 4. CROSS JOIN (The Cartesian Product)
+**Logic:** Combines every single row from the Left table with every single row from the Right table. No joining condition (`ON`) is needed.
+* **Business Example:** Generating test data, or creating a matrix of all possible combinations (e.g., combining a table of 5 T-shirt sizes with a table of 4 colors to get all 20 possible SKU combinations).
+
